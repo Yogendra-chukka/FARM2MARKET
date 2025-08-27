@@ -1,2 +1,3 @@
 # FARM2MARKET
-FARM2MARKET its a E-commerce website for farmers and buyers , for no middleman interact within them
+Fam2Market is an agricultural marketplace designed to directly connect farmers with consumers and retailers, aiming to provide fair and sustainable income for farmers. The platform allows farmers to list and sell their fresh produce online, improving market access and reducing reliance on middlemen. Buyers benefit from transparent pricing and the ability to track the location of their orders after purchase, enhancing trust and reliability. The system provides an order summary and product location feature for enhanced transparency during delivery. Fam2Market’s mission centers on promoting efficiency, transparency, and empowerment for both producers and buyers. The project demonstrates how digital platforms can revolutionize agricultural supply chains and enhance livelihoods for small-scale farmers.
+
