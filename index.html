@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AgriFarm Marketplace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonts & Icons for Login UI -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,800" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ====== LOGIN / SIGNUP ====== -->
+  <h2 id="loginHeading"></h2>
+  <div class="container" id="authContainer">
+    <!-- Sign Up -->
+    <div class="form-container sign-up-container">
+      <form id="signUpForm">
+        <h1>Create Account</h1>
+        <div class="social-container">
+          <a href="#" class="social" tabindex="-1"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social" tabindex="-1"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#" class="social" tabindex="-1"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span>or use your email for registration</span>
+        <input id="su_name" type="text" placeholder="Name" required />
+        <input id="su_email" type="email" placeholder="Email" required />
+        <input id="su_password" type="password" placeholder="Password" required />
+        <button type="submit">Sign Up</button>
+        <p id="signUpMsg" class="msg"></p>
+      </form>
+    </div>
+
+    <!-- Sign In -->
+    <div class="form-container sign-in-container">
+      <form id="signInForm">
+        <h1>Sign in</h1>
+        <div class="social-container">
+          <a href="#" class="social" tabindex="-1"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social" tabindex="-1"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#" class="social" tabindex="-1"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span> or use your account</span>
+        <input id="si_email" type="email" placeholder="Email" required />
+        <input id="si_password" type="password" placeholder="Password" required />
+        <a href="#" onclick="alert('Demo only. Forgot password flow not implemented.')">Forgot your password?</a>
+        <button type="submit">Sign In</button>
+        <p id="signInMsg" class="msg"></p>
+      </form>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="ghost" id="signIn">Sign In</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Friend!</h1>
+          <p>Enter your personal details and start journey with us</p>
+          <button class="ghost" id="signUp">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="loginFooter">
+    <p>
+      Created with <i class="fa fa-heart"></i> by
+      <a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">FARM2MARKET</a>.
+    </p>
+  </footer>
+
+  <!-- ====== APP PAGES ====== -->
+  <!-- ROLE SELECTION -->
+  <div id="rolePage" class="page">
+    <h2>Select Role</h2>
+    <button onclick="selectRole('seller')">I am a Seller</button>
+    <button onclick="selectRole('buyer')">I am a Buyer</button>
+    <button class="back-button" onclick="logout()">Logout</button>
+  </div>
+
+  <!-- SELLER DETAILS -->
+  <div id="sellerDetailsPage" class="page">
+    <h2>Seller Details</h2>
+    <input id="sellerName" placeholder="Full Name" />
+    <input id="sellerEmail" placeholder="Email" disabled />
+    <input id="sellerLocation" placeholder="Location" />
+    <input id="sellerProfileImage" type="file" accept="image/*" />
+    <div id="sellerImagePreview"></div>
+    <button onclick="submitSellerDetails()">Submit</button>
+    <button class="back-button" onclick="backToRoleSelection()">Back</button>
+  </div>
+
+  <!-- SELLER HOME -->
+  <div id="sellerHomePage" class="page">
+    <div class="menu-button" onclick="toggleMenu('sellerMenuContent')">☰</div>
+    <div id="sellerMenuContent" class="menu-content">
+      <button onclick="showProfile()">Profile</button>
+      <button onclick="alert('Settings will come soon')">Settings</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+    <h2>Seller Home</h2>
+    <div id="sellerProfileDisplay"></div>
+    <div id="sellerProducts"></div>
+    <button onclick="showPage('addProductPage')">Add Product</button>
+    <button onclick="viewSellerOrders()">View Orders</button>
+    <div id="sellerOrdersList"></div>
+  </div>
+
+  <!-- ADD PRODUCT -->
+  <div id="addProductPage" class="page">
+    <h2>Add Product</h2>
+    <input id="productName" placeholder="Product Name" />
+    <input id="productType" placeholder="Product Type (Fruit or Vegetable)" />
+    <input id="productQty" type="number" placeholder="Quantity Available" />
+    <input id="productPrice" type="number" placeholder="Fixed Price per unit/kg" />
+    <input id="productLocation" placeholder="Location" />
+    <input id="productImage" type="file" accept="image/*" />
+    <button onclick="addProduct()">Submit</button>
+    <button class="back-button" onclick="showPage('sellerHomePage')">Back</button>
+  </div>
+
+  <!-- BUYER DETAILS -->
+  <div id="buyerDetailsPage" class="page">
+    <h2>Buyer Details</h2>
+    <input id="buyerFirstName" placeholder="First Name" />
+    <input id="buyerSurname" placeholder="Surname" />
+    <input id="buyerEmail" disabled placeholder="Email" />
+    <input id="buyerLocation" placeholder="Your Location" />
+    <input id="buyerProfileImage" type="file" accept="image/*" />
+    <div id="buyerImagePreview"></div>
+    <button onclick="submitBuyerDetails()">Submit</button>
+    <button class="back-button" onclick="backToRoleSelection()">Back</button>
+  </div>
+
+  <!-- BUYER HOME -->
+  <div id="buyerHomePage" class="page">
+    <div class="menu-button" onclick="toggleMenu('buyerMenuContent')">☰</div>
+    <div id="buyerMenuContent" class="menu-content">
+      <button onclick="showProfile()">Profile</button>
+      <button onclick="alert('Settings will come soon')">Settings</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+    <h2>Available Products</h2>
+    <div id="categoryFilters">
+      <button onclick="showCategory('all')" class="activeCategory">All</button>
+      <button onclick="showCategory('Fruit')">Fruits</button>
+      <button onclick="showCategory('Vegetable')">Vegetables</button>
+    </div>
+    <input id="searchInput" placeholder="Search by name/type..." oninput="filterProducts()" />
+    <div id="productList"></div>
+    <button id="viewCartButton" onclick="viewCart()">View Cart</button>
+    <button onclick="viewBuyerOrders()">View Orders</button>
+  </div>
+
+  <!-- CART PAGE -->
+  <div id="cartPage" class="page">
+    <h2>Your Cart</h2>
+    <div id="cartList"></div>
+    <button onclick="goToAddressPage()">Proceed to Address</button>
+    <button class="back-button" onclick="showPage('buyerHomePage')">Back</button>
+  </div>
+
+  <!-- ADDRESS PAGE -->
+  <div id="addressPage" class="page">
+    <h2>Delivery Address</h2>
+
+    <label for="savedAddresses">Choose a saved address:</label>
+    <select id="savedAddresses" onchange="selectSavedAddress()">
+      <option value="">-- Select an Address --</option>
+    </select>
+
+    <h3>Or enter a new address:</h3>
+    <input id="recipientName" placeholder="Full Name" />
+    <input id="streetAddress" placeholder="Street Address" />
+    <input id="city" placeholder="City" />
+    <input id="state" placeholder="State/Province" />
+    <input id="postalCode" placeholder="Postal/ZIP Code" />
+    <input id="country" placeholder="Country" />
+    <input id="contactPhone" placeholder="Contact Phone" />
+
+    <button onclick="saveAddressAndContinue()">Proceed to Payment</button>
+    <button class="back-button" onclick="viewCart()">Back</button>
+  </div>
+
+  <!-- PAYMENT PAGE -->
+  <div id="paymentPage" class="page">
+    <h2>Payment</h2>
+    <div id="orderSummary"></div>
+    <select id="paymentMethod">
+      <option>Cash on Delivery</option>
+      <option>UPI</option>
+      <option>Card</option>
+    </select>
+    <button onclick="completeOrder()">Pay Now</button>
+    <button class="back-button" onclick="goToAddressPage()">Back</button>
+  </div>
+
+  <!-- CONFIRMATION PAGE -->
+  <div id="confirmationPage" class="page">
+    <h2>✅ Order Status</h2>
+    <div id="trackingItems"></div>
+    <button onclick="showPage('buyerHomePage')">Go Home</button>
+  </div>
+
+  <!-- PROFILE PAGE -->
+  <div id="profilePage" class="page">
+    <button onclick="closeProfile()">Close Profile</button>
+    <h2>Your Profile</h2>
+    <div id="profileDetails"></div>
+  </div>
+
+  <!-- BUYER ORDERS PAGE -->
+  <div id="buyerOrdersPage" class="page">
+    <h2>Your Orders</h2>
+    <div id="buyerOrdersList"></div>
+    <button onclick="showPage('buyerHomePage')">Back to Home</button>
+  </div>
+
+  <!-- External JS -->
+  <script src="app.js"></script>
+</body>
+</html>
